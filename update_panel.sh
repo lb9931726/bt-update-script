@@ -15,17 +15,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# version
-if [ -n "$version" ]; then
-    return
-fi
-version=$(curl -k -fsSL --connect-timeout 30 -m 10 https://api.bt.sb/api/panel/get_version)
-if [ -z "$version" ]; then
-    version=$(curl -k -fsSL --connect-timeout 30 -m 10 https://www.bt.cn/api/panel/get_version)
-fi
-if [ -z "$version" ]; then
-    version='11.6.0'
-fi
+# version - 强制指定为11.6.0
+version='11.6.0'
 
 sed -i '2i version="$1"' /tmp/update_panel.sh
 bash /tmp/update_panel.sh "$version"
