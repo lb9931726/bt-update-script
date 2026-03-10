@@ -19,6 +19,7 @@ fi
 version='11.6.0'
 
 sed -i '2i version="$1"' /tmp/update_panel.sh
+sed -i 's/11\.5\.0/11.6.0/g' /tmp/update_panel.sh
 bash /tmp/update_panel.sh "$version"
 if [ $? -ne 0 ]; then
     echo "Failed to update script"
